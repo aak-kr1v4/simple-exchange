@@ -30,17 +30,17 @@ void Session::handle_read(const boost::system::error_code &error, size_t bytes_t
 
             // Парсим json, который пришёл нам в сообщении.
             auto j = nlohmann::json::parse(data_);
-            req_t reqType = j["ReqType"];
+            REQ_T reqType = j["ReqType"];
 
             std::string reply = "Error! Unknown request type";
             switch(reqType)
             {
-                case req_t::REGISTRATION: 
+                case REQ_T::REGISTRATION: 
                 {
                     reply = Core::GetCore().RegisterNewUser(j["Message"]);
                     break;
                 }
-                case req_t::HELLO:
+                case REQ_T::HELLO:
                 {
                     reply = "Hello, " + Core::GetCore().GetUserName(j["UserId"]) + "!\n";
                     break;

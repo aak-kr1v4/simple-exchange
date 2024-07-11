@@ -7,7 +7,7 @@ TEST(UserTest, DefaultConstructor)
     User user;
     EXPECT_EQ(user.getName(), "NONE");
     EXPECT_EQ(user.getId(), 0);
-    EXPECT_NEAR(user.getBalance(cur_t::NONE), 0.0, 0.001);
+    EXPECT_NEAR(user.getBalance(CUR_T::NONE), 0.0, 0.001);
 }
 
 TEST(UserTest, ParameterizedConstructorName) 
@@ -46,11 +46,11 @@ TEST(UserTest, SetGetBalance)
 {
 
     User user;
-    user.setBalance(CURRENCY_TYPE::USD, 100.21);
-    EXPECT_NEAR(user.getBalance(CURRENCY_TYPE::USD), 100.21, 0.001);
+    user.setBalance(CUR_T::USD, 100.21);
+    EXPECT_NEAR(user.getBalance(CUR_T::USD), 100.21, 0.001);
 
-    user.setBalance(CURRENCY_TYPE::RUB, 0.817);
-    EXPECT_NEAR(user.getBalance(CURRENCY_TYPE::RUB), 0.82, 0.001);
+    user.setBalance(CUR_T::RUB, 0.817);
+    EXPECT_NEAR(user.getBalance(CUR_T::RUB), 0.82, 0.001);
 
-    EXPECT_NEAR(user.getBalance(CURRENCY_TYPE::NONE), 0.0, 0.001);
+    EXPECT_NEAR(user.getBalance(CUR_T::NONE), 0.0, 0.001);
 }

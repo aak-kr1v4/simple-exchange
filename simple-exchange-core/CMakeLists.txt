@@ -11,6 +11,9 @@ add_library(${CORE_PROJECT_NAME} STATIC
 
     src/simple-exchange-core/Utils/CurrencyUtil.cpp
     includes/simple-exchange-core/Utils/CurrencyUtil.hpp
+
+    src/simple-exchange-core/Order/Order.cpp
+    includes/simple-exchange-core/Order/Order.hpp
 )
 
 target_include_directories(${CORE_PROJECT_NAME} PUBLIC includes)

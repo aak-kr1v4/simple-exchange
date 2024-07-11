@@ -9,7 +9,7 @@ class CurrencyUtil
         CurrencyUtil() = delete;
 
     public:
-        static std::string getCurCodeStr(cur_t aCurType);
+        static std::string getCurCodeStr(CUR_T aCurType);
         static ldouble     round2(ldouble aValue); // round to two decimal plac>
 
 };

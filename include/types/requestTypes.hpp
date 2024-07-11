@@ -9,9 +9,10 @@ enum class REQUEST_TYPE: ushort
     HELLO,
     REGISTRATION,
     ORDER_CREATE,
-    GET_BALANCE
+    GET_BALANCE,
+    END_OF_ENUM
 };
 
-using req_t = REQUEST_TYPE;
+using REQ_T = REQUEST_TYPE;
 
 #endif

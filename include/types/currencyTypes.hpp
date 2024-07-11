@@ -11,6 +11,6 @@ enum class CURRENCY_TYPE : ushort
     END_OF_ENUM
 };
 
-using cur_t = CURRENCY_TYPE;
+using CUR_T = CURRENCY_TYPE;
 
 #endif

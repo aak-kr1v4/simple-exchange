@@ -1,13 +1,13 @@
 #include "simple-exchange-core/Utils/CurrencyUtil.hpp"
 #include <cmath>
 
-std::string CurrencyUtil::getCurCodeStr(cur_t aCurType)
+std::string CurrencyUtil::getCurCodeStr(CUR_T aCurType)
 {
     const static curcode_map_t curCodesMap = 
         {
-            {   CURRENCY_TYPE::NONE    ,    "NONE"  },
-            {   CURRENCY_TYPE::USD     ,    "USD"   },
-            {   CURRENCY_TYPE::RUB     ,    "RUB"   },
+            {   CUR_T::NONE ,    "NONE"  },
+            {   CUR_T::USD  ,    "USD"   },
+            {   CUR_T::RUB  ,    "RUB"   },
         };
 
         const auto it = curCodesMap.find(aCurType);

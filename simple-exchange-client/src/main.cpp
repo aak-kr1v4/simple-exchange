@@ -38,7 +38,7 @@ int main()
                     nlohmann::json request = 
                     {
                         {"UserId", registeredUser.getId()},
-                        {"ReqType", req_t::HELLO},
+                        {"ReqType", REQ_T::HELLO},
                         {"Message", ""}
                     };
 

@@ -39,12 +39,12 @@ void User::setId(size_t aId)
     mId = aId;
 }
 
-void User::setBalance(cur_t aCurType, ldouble aAmount)
+void User::setBalance(CUR_T aCurType, ldouble aAmount)
 {
     mBalances[aCurType] = CurrencyUtil::round2(aAmount);
 }
 
-ldouble User::getBalance(cur_t aCurType)
+ldouble User::getBalance(CUR_T aCurType)
 {
     const auto it = mBalances.find(aCurType);
     if (it != mBalances.end()) 
