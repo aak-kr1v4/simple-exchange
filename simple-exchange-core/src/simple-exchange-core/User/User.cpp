@@ -13,13 +13,13 @@ User::User(const std::string& aName)
 {
 }
 
-User::User(const std::string &aName, size_t aId)
+User::User(const std::string& aName, size_t aId)
     : mId(aId),
     mName(aName)
 {
 }
 
-std::string User::getName()
+std::string User::getName() const
 {
     return mName;
 }
@@ -29,7 +29,7 @@ void User::setName(const std::string& aName)
     mName = aName;
 }
 
-size_t User::getId()
+size_t User::getId() const
 {
     return mId;
 }
@@ -47,7 +47,8 @@ void User::setBalance(CURRENCY_TYPE aCurType, ldouble aAmount)
 ldouble User::getBalance(cur_t aCurType)
 {
     const auto it = mBalances.find(aCurType);
-    if (it != mBalances.end()) {
+    if (it != mBalances.end()) 
+    {
         return it->second;
     }
     return 0.0;

@@ -13,8 +13,8 @@ Client::Client(boost::asio::io_service& io_service, tcp::resolver::iterator& it)
 }
 
 void Client::SendMessage(
-    const std::string &aRequestType, 
-    const std::string &aMessage)
+    const std::string& aRequestType, 
+    const std::string& aMessage)
 {
     nlohmann::json req;
     req["UserId"] = mId;
