@@ -5,6 +5,12 @@ set(CORE_PROJECT_NAME simple-exchange-core)
 add_library(${CORE_PROJECT_NAME} STATIC
     src/simple-exchange-core/Core/Core.cpp
     includes/simple-exchange-core/Core/Core.hpp
+
+    src/simple-exchange-core/User/User.cpp
+    includes/simple-exchange-core/User/User.hpp
+
+    src/simple-exchange-core/Utils/CurrencyUtil.cpp
+    includes/simple-exchange-core/Utils/CurrencyUtil.hpp
 )
 
 target_include_directories(${CORE_PROJECT_NAME} PUBLIC includes)
