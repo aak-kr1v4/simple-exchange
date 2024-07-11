@@ -37,3 +37,26 @@ std::string Core::GetUserName(size_t aUserId)
         return userIt->second.getName();
     }
 }
+
+std::string Core::CreateOrder(const nlohmann::json& aOrderData, size_t aUserId)
+{
+    Order newOrder(
+            aOrderData["OrderT"],
+            aOrderData["BaseCurT"],
+            aOrderData["QuoteCurT"],
+            aOrderData["BaseValue"],
+            aOrderData["QuoteValue"],
+            aUserId
+    );
+
+    if (aOrderData["OrderT"] == ORDER_T::BUY)
+    {
+        mbuyOrders.push(newOrder);
+    }
+    else
+    {
+        mSellOrders.push(newOrder);
+    }
+
+    return "Order succesfully created!\n";
+}

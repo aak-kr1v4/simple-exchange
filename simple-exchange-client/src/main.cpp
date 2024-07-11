@@ -3,6 +3,8 @@
 #include <iostream>
 #include "nlohmann/json.hpp"
 #include "simple-exchange-core/User/User.hpp"
+#include "simple-exchange-core/Order/Order.hpp"
+#include "ProcessMenu/ProcessMenu.hpp"
 
 int main()
 {
@@ -26,7 +28,8 @@ int main()
             // Тут реализовано "бесконечное" меню.
             std::cout << "Menu:\n"
                          "1) Hello Request\n"
-                         "2) Exit\n"
+                         "2) Add Order\n"
+                         "3) Exit\n"
                          << std::endl;
 
             short menu_option_num;
@@ -38,7 +41,7 @@ int main()
                     nlohmann::json request = 
                     {
                         {"UserId", registeredUser.getId()},
-                        {"ReqType", REQ_T::HELLO},
+                        {"ReqT", REQ_T::HELLO},
                         {"Message", ""}
                     };
 
@@ -48,12 +51,31 @@ int main()
                 }
                 case 2:
                 {
+                    nlohmann::json request;
+                    if (ProcessMenu::inputOrderCreate(request)) 
+                    {
+                        request["UserId"] = registeredUser.getId();
+                        request["ReqT"] = REQ_T::ORDER_CREATE;
+
+                        client.SendMessage(request.dump());
+                        std::cout << client.ReadMessage();
+                    } 
+                    else 
+                    {
+                        std::cout << "Order creation failed.\n";
+                    }
+
+                    break;
+                }
+                case 3:
+                {
                     exit(0);
                     break;
                 }
                 default:
                 {
                     std::cout << "Unknown menu option\n" << std::endl;
+                    break;
                 }
             }
         }

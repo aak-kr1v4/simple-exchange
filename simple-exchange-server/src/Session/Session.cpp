@@ -30,7 +30,7 @@ void Session::handle_read(const boost::system::error_code &error, size_t bytes_t
 
             // Парсим json, который пришёл нам в сообщении.
             auto j = nlohmann::json::parse(data_);
-            REQ_T reqType = j["ReqType"];
+            REQ_T reqType = j["ReqT"];
 
             std::string reply = "Error! Unknown request type";
             switch(reqType)
@@ -43,6 +43,11 @@ void Session::handle_read(const boost::system::error_code &error, size_t bytes_t
                 case REQ_T::HELLO:
                 {
                     reply = "Hello, " + Core::GetCore().GetUserName(j["UserId"]) + "!\n";
+                    break;
+                }
+                case REQ_T::ORDER_CREATE:
+                {
+                    reply = Core::GetCore().CreateOrder(j["OrderData"], j["UserId"]);
                     break;
                 }
                 default:

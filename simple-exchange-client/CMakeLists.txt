@@ -6,6 +6,9 @@ add_executable(${CLIENT_PROJECT_NAME}
     src/main.cpp
     src/Client/Client.hpp
     src/Client/Client.cpp
+
+    src/ProcessMenu/ProcessMenu.cpp
+    src/ProcessMenu/ProcessMenu.hpp
 )
 
 find_package(Boost 1.40 COMPONENTS system REQUIRED)
