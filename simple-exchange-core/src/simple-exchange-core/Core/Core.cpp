@@ -1,4 +1,6 @@
 #include "simple-exchange-core/Core/Core.hpp"
+#include "simple-exchange-core/User/User.hpp"
+#include "nlohmann/json.hpp"
 
 Core& Core::GetCore()
 {
@@ -9,20 +11,29 @@ Core& Core::GetCore()
 std::string Core::RegisterNewUser(const std::string& aUserName)
 {
     size_t newUserId = mUsers.size();
-    mUsers[newUserId] = aUserName;
+    User newUser(aUserName, newUserId);
 
-    return std::to_string(newUserId);
+    mUsers[newUserId] = newUser;
+
+    nlohmann::json response = 
+    {
+        {"UserName", aUserName},
+        {"UserId",   newUserId}
+    };
+
+    return response.dump();
 }
 
-std::string Core::GetUserName(const std::string& aUserId)
+std::string Core::GetUserName(size_t aUserId)
 {
-    const auto userIt = mUsers.find(std::stoi(aUserId));
+    const auto userIt = mUsers.find(aUserId);
+
     if (userIt == mUsers.cend())
     {
         return "Error! Unknown User";
     }
     else
     {
-        return userIt->second;
+        return userIt->second.getName();
     }
 }

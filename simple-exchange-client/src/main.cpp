@@ -1,6 +1,8 @@
 #include "Client/Client.hpp"
 #include "common.hpp"
 #include <iostream>
+#include "nlohmann/json.hpp"
+#include "simple-exchange-core/User/User.hpp"
 
 int main()
 {
@@ -13,6 +15,11 @@ int main()
         tcp::resolver::iterator iterator = resolver.resolve(query);
 
         Client client(io_service, iterator);
+
+        std::string registerRespone = client.ProcessRegistration();
+        const auto j = nlohmann::json::parse(registerRespone);
+
+        User registeredUser(j["UserName"], j["UserId"]);
 
         while (true)
         {
@@ -28,11 +35,14 @@ int main()
             {
                 case 1:
                 {
-                    // Для примера того, как может выглядить взаимодействие с сервером
-                    // реализован один единственный метод - Hello.
-                    // Этот метод получает от сервера приветствие с именем клиента,
-                    // отправляя серверу id, полученный при регистрации.
-                    client.SendMessage(Requests::Hello, "");
+                    nlohmann::json request = 
+                    {
+                        {"UserId", registeredUser.getId()},
+                        {"ReqType", Requests::Hello},
+                        {"Message", ""}
+                    };
+
+                    client.SendMessage(request.dump());
                     std::cout << client.ReadMessage();
                     break;
                 }

@@ -12,18 +12,12 @@ class Client
         Client(boost::asio::io_service& io_service, tcp::resolver::iterator& it);
 
     public:
-        void SendMessage(
-            const std::string& aRequestType, 
-            const std::string& aMessage);
-
+        void SendMessage(const std::string& aRequestBody);
         std::string ReadMessage();
-
-    private:
+        
         std::string ProcessRegistration(); 
 
     private:
-        std::string mId;
-        std::string mName;
         tcp::socket socket_;
 
 };

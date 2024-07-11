@@ -1,9 +1,7 @@
 #ifndef CORE_HPP
 #define CORE_HPP
 
-#include <string>
-#include <map>
-#include <cstdlib>
+#include "simple-exchange-core/User/User.hpp"
 
 class Core
 {
@@ -18,13 +16,13 @@ class Core
         std::string RegisterNewUser(const std::string& aUserName);
 
         // Запрос имени клиента по ID
-        std::string GetUserName(const std::string& aUserId);
+        std::string GetUserName(size_t aUserId);
 
     private:
         Core() = default;
 
     private:
-        std::map<size_t, std::string> mUsers; 
+        users_map_t mUsers;
 };
 
 #endif

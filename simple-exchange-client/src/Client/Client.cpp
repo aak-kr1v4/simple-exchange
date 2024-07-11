@@ -4,25 +4,14 @@
 #include "common.hpp"
 
 Client::Client(boost::asio::io_service& io_service, tcp::resolver::iterator& it)
-    : mId("0"),
-    mName("NONE"),
-    socket_(io_service)
+    : socket_(io_service)
 {
     socket_.connect(*it);
-    mId = ProcessRegistration();
 }
 
-void Client::SendMessage(
-    const std::string& aRequestType, 
-    const std::string& aMessage)
+void Client::SendMessage(const std::string& aRequestBody)
 {
-    nlohmann::json req;
-    req["UserId"] = mId;
-    req["ReqType"] = aRequestType;
-    req["Message"] = aMessage;
-
-    std::string request = req.dump();
-    boost::asio::write(socket_, boost::asio::buffer(request, request.size()));
+    boost::asio::write(socket_, boost::asio::buffer(aRequestBody, aRequestBody.size()));
 }
 
 std::string Client::ReadMessage()
@@ -36,10 +25,17 @@ std::string Client::ReadMessage()
 
 std::string Client::ProcessRegistration()
 {
+    std::string name;
     std::cout << "Hello! Enter your name: ";
-    std::cin >> mName;
+    std::cin >> name;
 
-    // Для регистрации Id не нужен, заполним его нулём
-    SendMessage(Requests::Registration, mName);
+    nlohmann::json request = 
+    {
+        {"UserId", "0"},
+        {"ReqType", Requests::Registration},
+        {"Message", name}
+    };
+
+    SendMessage(request.dump());
     return ReadMessage();
 }
