@@ -2,7 +2,7 @@
 #define CLIENT_HPP
 
 #include <boost/asio.hpp>
-#include <string>
+#include "types/allTypes.hpp"
 
 using boost::asio::ip::tcp;
 

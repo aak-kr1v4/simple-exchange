@@ -32,7 +32,7 @@ std::string Client::ProcessRegistration()
     nlohmann::json request = 
     {
         {"UserId", "0"},
-        {"ReqType", Requests::Registration},
+        {"ReqType", req_t::REGISTRATION},
         {"Message", name}
     };
 

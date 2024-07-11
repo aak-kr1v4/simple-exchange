@@ -30,20 +30,26 @@ void Session::handle_read(const boost::system::error_code &error, size_t bytes_t
 
             // Парсим json, который пришёл нам в сообщении.
             auto j = nlohmann::json::parse(data_);
-            auto reqType = j["ReqType"];
+            req_t reqType = j["ReqType"];
 
             std::string reply = "Error! Unknown request type";
-            if (reqType == Requests::Registration)
+            switch(reqType)
             {
-                // Это реквест на регистрацию пользователя.
-                // Добавляем нового пользователя и возвращаем его ID.
-                reply = Core::GetCore().RegisterNewUser(j["Message"]);
-            }
-            else if (reqType == Requests::Hello)
-            {
-                // Это реквест на приветствие.
-                // Находим имя пользователя по ID и приветствуем его по имени.
-                reply = "Hello, " + Core::GetCore().GetUserName(j["UserId"]) + "!\n";
+                case req_t::REGISTRATION: 
+                {
+                    reply = Core::GetCore().RegisterNewUser(j["Message"]);
+                    break;
+                }
+                case req_t::HELLO:
+                {
+                    reply = "Hello, " + Core::GetCore().GetUserName(j["UserId"]) + "!\n";
+                    break;
+                }
+                default:
+                {
+                    reply = "Error! Unknown request type";
+                    break;
+                }
             }
 
             boost::asio::async_write(socket_,

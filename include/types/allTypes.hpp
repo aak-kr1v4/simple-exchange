@@ -1,9 +1,11 @@
 #ifndef ALLTYPES_HPP
 #define ALLTYPES_HPP
 
-#include "currencyTypes.hpp"
 #include <unordered_map>
 #include <string>
+
+#include "currencyTypes.hpp"
+#include "requestTypes.hpp"
 
 class User;
 
