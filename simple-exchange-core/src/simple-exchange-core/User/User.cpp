@@ -39,7 +39,7 @@ void User::setId(size_t aId)
     mId = aId;
 }
 
-void User::setBalance(CURRENCY_TYPE aCurType, ldouble aAmount)
+void User::setBalance(cur_t aCurType, ldouble aAmount)
 {
     mBalances[aCurType] = CurrencyUtil::round2(aAmount);
 }

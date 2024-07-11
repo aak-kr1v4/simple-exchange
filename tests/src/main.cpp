@@ -1,11 +1,6 @@
 #include <iostream>
 #include "gtest/gtest.h"
 
-TEST(HelloWorldTest, CheckCoreSum)
-{
-    EXPECT_EQ(2, 2);
-}
-
 int main(int argc, char** argv)
 {
     ::testing::InitGoogleTest(&argc, argv);

@@ -5,9 +5,12 @@ enable_testing()
 
 add_executable(${TESTS_PROJECT_NAME} 
     src/main.cpp
+    src/UsersTests.cpp
 )
 
-target_link_libraries(${TESTS_PROJECT_NAME} gtest gtest_main)
+target_include_directories(${TESTS_PROJECT_NAME} PRIVATE ../include)
+
+target_link_libraries(${TESTS_PROJECT_NAME} PUBLIC gtest gtest_main simple-exchange-core)
 target_compile_features(${TESTS_PROJECT_NAME} PUBLIC cxx_std_17)
 
 add_test(NAME ${TESTS_PROJECT_NAME} COMMAND ./${TESTS_PROJECT_NAME})
