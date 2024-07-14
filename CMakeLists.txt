@@ -9,4 +9,3 @@ add_subdirectory(simple-exchange-server)
 add_subdirectory(simple-exchange-client)
 add_subdirectory(external/googletest)
 add_subdirectory(tests)
-

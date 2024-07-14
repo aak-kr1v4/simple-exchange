@@ -29,7 +29,8 @@ int main()
             std::cout << "Menu:\n"
                          "1) Hello Request\n"
                          "2) Add Order\n"
-                         "3) Exit\n"
+                         "3) Show Balance\n"
+                         "4) Exit\n"
                          << std::endl;
 
             short menu_option_num;
@@ -68,6 +69,19 @@ int main()
                     break;
                 }
                 case 3:
+                {
+                    nlohmann::json request = 
+                    {
+                        {"UserId", registeredUser.getId()},
+                        {"ReqT", REQ_T::GET_BALANCE}
+                    };
+
+                    client.SendMessage(request.dump());
+                    std::cout << "Balance: \n" << client.ReadMessage() << "\n";
+
+                    break;
+                }
+                case 4:
                 {
                     exit(0);
                     break;

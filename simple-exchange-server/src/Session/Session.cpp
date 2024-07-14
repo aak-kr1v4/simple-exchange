@@ -50,6 +50,11 @@ void Session::handle_read(const boost::system::error_code &error, size_t bytes_t
                     reply = Core::GetCore().CreateOrder(j["OrderData"], j["UserId"]);
                     break;
                 }
+                case REQ_T::GET_BALANCE:
+                {
+                    reply = Core::GetCore().GetUserBalance(j["UserId"]);
+                    break;
+                }
                 default:
                 {
                     reply = "Error! Unknown request type";

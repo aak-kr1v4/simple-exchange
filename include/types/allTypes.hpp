@@ -15,6 +15,6 @@ class Order;
 using balance_map_t = std::unordered_map<CUR_T ,  ldouble>;
 using curcode_map_t = std::unordered_map<CUR_T ,  std::string>;
 using users_map_t   = std::unordered_map<size_t,  User>;
-using p_queue_t     = std::priority_queue<Order>;
+using pq_orders_t   = std::priority_queue<Order>;
 
 #endif

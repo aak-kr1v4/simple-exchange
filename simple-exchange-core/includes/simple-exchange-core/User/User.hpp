@@ -18,7 +18,7 @@ class User
         void            setId       (size_t aId);
 
         void            setBalance  (CUR_T aCurType, ldouble aAmount);
-        ldouble         getBalance  (CUR_T aCurType);
+        ldouble         getBalance  (CUR_T aCurType) const;
 
     private:
         size_t          mId;

@@ -44,7 +44,7 @@ void User::setBalance(CUR_T aCurType, ldouble aAmount)
     mBalances[aCurType] = CurrencyUtil::round2(aAmount);
 }
 
-ldouble User::getBalance(CUR_T aCurType)
+ldouble User::getBalance(CUR_T aCurType) const
 {
     const auto it = mBalances.find(aCurType);
     if (it != mBalances.end()) 
